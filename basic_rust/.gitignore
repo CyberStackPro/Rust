@@ -1,0 +1,29 @@
+# Ignore the target directory (Cargo build output)
+target/
+
+# Ignore Cargo.lock for libraries (optional, but keep for binaries)
+# Cargo.lock
+
+# Ignore backup and temporary files
+**/*.rs.bk
+*.swp
+*.swo
+*~
+
+# Ignore IDE/editor files
+.idea/
+.vscode/
+*.iml
+
+# Ignore byproducts of rustup, clippy, etc.
+rustfmt.toml
+.clippy.toml
+
+# Ignore coverage/debug/test output
+coverage/
+debug/
+*.profraw
+*.profdata
+
+# Ignore logs
+*.log
