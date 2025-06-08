@@ -22,8 +22,21 @@
 // Example: let c: char = 'Z';
 
 // tuple type: (T1, T2, ...)
+// A tuple is a fixed-size collection of values of different types.
+// Tuples can contain any number of elements, and each element can be of a different type.
+// Example: let t: (i32, f64, char) = (42, 3.14, 'Z');
+// The tuple type is defined with parentheses, and you can access its elements using dot notation, like `t.0`, `t.1`, etc.
+
 // array type: [T; N]
+// An array is a fixed-size collection of elements of the same type.
+// Arrays in Rust are defined with square brackets, and the size of the array is part of its type.
+// Example: let arr: [i32; 3] = [1, 2, 3];
+// The array type is defined with square brackets, where `T` is the type of the elements and `N` is the number of elements.
+
 // isize and usize are pointer-sized integers, used for indexing collections
+// and are typically used when the size of the data structure is not known at compile time.
+// The `usize` type is an unsigned integer type that is used for indexing and measuring the size of collections.
+// The `isize` type is a signed integer type that is used for pointer arithmetic and can be used to represent the size of a collection in bytes.
 
 fn main() {
     // Integer types
