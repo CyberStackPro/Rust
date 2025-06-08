@@ -37,6 +37,7 @@
 // and are typically used when the size of the data structure is not known at compile time.
 // The `usize` type is an unsigned integer type that is used for indexing and measuring the size of collections.
 // The `isize` type is a signed integer type that is used for pointer arithmetic and can be used to represent the size of a collection in bytes.
+mod functions;
 
 fn main() {
     // Integer types
