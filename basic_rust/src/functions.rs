@@ -23,6 +23,9 @@ fn main() {
 
     // the BMI fn
     calculate_bmi(70.0, 1.75); // weight in kg, height in meters 
+    let str = String::from("Hello, Rust!");
+    let length = calculate_str(&str);
+    println!("The length of the string '{}' is: {}", str, length);
 }
 
 fn add(x: i32, y: i32) -> i32 {
@@ -71,3 +74,32 @@ fn calculate_bmi(weight: f32, height: f32) {
         bmi_value, category
     );
 }
+
+fn calculate_str(str: &str) -> usize {
+    str.len() // This is an expression that evaluates to the length of the string
+}
+
+// Analogy:
+// Borrowing in Rust is similar to passing props in React: both are about sharing data safely without direct modification.
+
+// 2. Dangling Pointers
+// A dangling pointer is a pointer that refers to memory that has already been freed or is otherwise invalid. Using it can cause crashes or unpredictable behavior.
+
+// Rust prevents dangling pointers by making sure references can’t outlive the data they point to.
+
+// 3. Data Races
+// A data race happens when:
+
+// Two or more threads access the same memory at the same time,
+// At least one thread is writing,
+// There’s no synchronization.
+// This can lead to bugs that are hard to find.
+
+// Rust prevents data races at compile time by enforcing strict rules about how data is accessed and shared between threads.
+
+// Summary Table:
+
+// Concept	What it is	How Rust/React handles it
+// Borrowing/Props	Sharing data without modifying it	Rust: references, React: props
+// Dangling Pointer	Pointer to invalid memory	Rust: prevents at compile time
+// Data Race	Unsafe concurrent memory access	Rust: prevents at compile time
