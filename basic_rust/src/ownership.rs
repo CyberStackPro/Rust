@@ -12,6 +12,9 @@
 // but not both simultaneously. This ensures that
 // data races are prevented at compile time.
 
+fn main() {
+    imu_ref();
+}
 // Example 1: Ownership transfer
 fn ownership_example() {
     let s1 = String::from("hello");
@@ -60,3 +63,11 @@ fn lifetime_example() {
 //     mutable_borrowing_example();
 //     // lifetime_example(); // Uncomment to see the lifetime error
 // }
+
+//  Immutable Reference
+fn imu_ref() {
+    let mut _x: i32 = 5;
+    let _y = &mut _x;
+    *_y += 1;
+    println!("Value via y: {}", _y);
+}
