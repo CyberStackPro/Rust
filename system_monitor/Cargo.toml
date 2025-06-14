@@ -1,0 +1,9 @@
+[package]
+name = "system_monitor"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sysinfo = "0.24.0"
+gtk = "0.18.1"
+glib = "0.18.0"
