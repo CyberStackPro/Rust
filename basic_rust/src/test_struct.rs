@@ -17,17 +17,16 @@ struct User {
     email: String,
     sign_in_count: u64,
 }
-impl  User {
-    fn build_user(email: String, username: String) -> User {
-        User {
-            active: true,
-            username: username,
-            email: email,
-            sign_in_count: 1,
-        }
+// impl User {
+fn build_user(email: String, username: String) -> User {
+    User {
+        active: true,
+        username: username,
+        email: email,
+        sign_in_count: 1,
     }
-    
 }
+// }
 // fn main() {
 //     let person = Person {
 //         name: String::from("Alice"),
@@ -55,7 +54,7 @@ fn main() {
     user1.email = "yeab@gmail.com".to_string();
 
     // println!("User List, {:?}", user1)
-    user1.
+    // user1.email
 
     // Immutable borrow to check balance
     // account.check_balance();
@@ -66,7 +65,6 @@ fn main() {
     // Immutable borrow to check balance
     // account.check_balance();
 }
-
 
 // struct BankAccount {
 //     owner: String,
