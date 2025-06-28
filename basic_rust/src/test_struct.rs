@@ -45,14 +45,19 @@ fn main() {
     // };
 
     let mut user1: User = User {
-        active: true,
         username: String::from("Yeabsra"),
         email: String::from("yeabsragebriel@gmail.com"),
+        active: true,
         sign_in_count: 1,
     };
 
     user1.email = "yeab@gmail.com".to_string();
 
+    let user2: User = User {
+        username: String::from("Crao"),
+        email: String::from("craooarc@gmail.com"),
+        ..user1
+    };
     // println!("User List, {:?}", user1)
     // user1.email
 
