@@ -14,34 +14,37 @@ use std::vec::Vec;
 
 // Example: Creating and using a vector
 fn main() {
-    // Create a new vector to store integers
-    let mut numbers: Vec<i32> = Vec::new();
+    // 1. Creating an empty vector:
+    // Type annotation is often needed initially if no values are pushed immediately.
+    let mut v: Vec<i32> = Vec::new();
 
     // Add elements to the vector
-    numbers.push(10);
-    numbers.push(20);
-    numbers.push(30);
+    v.push(10);
+    v.push(20);
+    v.push(30);
+
+    // or adding string
 
     // Print the vector
-    println!("Numbers: {:?}", numbers);
+    println!("Numbers: {:?}", v);
 
     // Access elements in the vector
-    if let Some(first) = numbers.get(0) {
+    if let Some(first) = v.get(0) {
         println!("First number: {}", first);
     }
 
     // Iterate over the vector
-    for number in &numbers {
+    for number in &v {
         println!("Number: {}", number);
     }
 
     // Remove an element from the vector
-    if let Some(removed) = numbers.pop() {
+    if let Some(removed) = v.pop() {
         println!("Removed number: {}", removed);
     }
 
     // Print the vector after removal
-    println!("Numbers after removal: {:?}", numbers);
+    println!("Numbers after removal: {:?}", v);
 }
 // Vectors can also be created using the `vec!` macro, which allows you to initialize a vector with a set of values.
 // Example: Creating a vector using the `vec!` macro
@@ -108,7 +111,7 @@ fn vec_array_numbers() {
     // Using a match statement to handle the Option
 
     match third {
-        Some(array) => println!("Third number is: {}", third),
+        Some(array) => println!("Third number is: {:?}", third),
         None => println!("No third number found in the vector."),
     }
 
