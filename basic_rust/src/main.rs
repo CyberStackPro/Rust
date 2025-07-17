@@ -39,10 +39,11 @@
 // The `isize` type is a signed integer type that is used for pointer arithmetic and can be used to represent the size of a collection in bytes.
 mod enums;
 mod functions;
+mod hash_maps;
+mod oop;
 mod ownership;
 mod test_struct;
 mod vectors;
-
 fn main() {
     // Integer types
     let a: i32 = 10; // Signed 32-bit integer

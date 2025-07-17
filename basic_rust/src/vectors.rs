@@ -6,7 +6,7 @@
 // Vectors are implemented as a contiguous growable array type, meaning they can store elements of the same type and can change size at runtime.
 // Vectors are defined using the `Vec<T>` type, where `T` is the type of elements stored in the vector.
 use std::fmt::Debug;
-use std::vec::Vec;
+use std::vec::{self, Vec};
 // Vectors are useful when you need a collection that can change size, such as when you don't know the number of elements in advance or when you need to add or remove elements dynamically.
 // They are commonly used for storing lists, arrays, and other collections of data that need to be manipulated at runtime.
 // Vectors are implemented as a contiguous growable array type, meaning they can store elements of the same type and can change size at runtime.
@@ -19,11 +19,16 @@ fn main() {
     let mut v: Vec<i32> = Vec::new();
 
     // Add elements to the vector
-    v.push(10);
-    v.push(20);
-    v.push(30);
+    // v.push(10);
+    // v.push(20);
+    // v.push(30);
 
     // or adding string
+    let names = vec!["Alice", "Bob", "Charlie"];
+    println!("Initial names: {:?}", names);
+
+    let numbers = vec![1, 2, 3, 4, 5]; // Vec<i32>
+    println!("Initial numbers: {:?}", numbers);
 
     // Print the vector
     println!("Numbers: {:?}", v);
@@ -93,35 +98,84 @@ fn main_generic() {
     let strings: Vec<String> = vec![String::from("Hello"), String::from("World")];
     create_generic_vector(strings);
 }
-
-fn vec_array_numbers() {
-    // Create a vector of integers
-    let numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
-
-    // Print the vector
-    println!("Numbers: {:?}", numbers);
-
-    // Print number 3 from the vector
-    let third: &i32 = &numbers[2];
-    println!("Third number: {}", third);
-
-    // Safely access the third number using `get`
-    let third: Option<&i32> = numbers.get(2);
-    // The `get` method returns an `Option`, which is `Some` if the index exists, or `None` if it does not.
-    // Using a match statement to handle the Option
-
-    match third {
-        Some(array) => println!("Third number is: {:?}", third),
-        None => println!("No third number found in the vector."),
+fn store_different_types() {
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
     }
 
-    // Convert the vector to an array (fixed size)
-    let array: [i32; 5] = numbers.try_into().expect("Slice with incorrect length");
-    // Note: The `try_into` method requires the `TryInto` trait, which is available in the standard library.
-    // This will panic if the vector length does not match the array length.
-    // If you want to handle the case where the vector length does not match the array length,
-    // you can use a match statement or an if let statement to handle the error gracefully.
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("hello")),
+        SpreadsheetCell::Float(10.23),
+    ];
 
-    // Print the array
-    println!("Array: {:?}", array);
+    println!("\n--- Spreadsheet Row Data ---");
+
+    for cell in row {
+        match cell {
+            SpreadsheetCell::Float(f) => println!("Float: {}", f),
+            SpreadsheetCell::Int(i) => println!("Integer: {}", i),
+            SpreadsheetCell::Text(t) => println!("Text: {}", t),
+        }
+    }
 }
+// fn iterating_over_vectors() {
+//     let v = vec![100, 32, 57];
+
+//     // Iterating over immutable references:
+//     // This is the most common way to iterate when you only need to read elements.
+//     for n_ref in &v {
+//         println!("Immutable reference: {}", n_ref);
+//     }
+//     // Iterating over mutable references:
+//     // Use this when you need to modify each element in place.
+
+//     let mut v_mut = vec![10, 20, 30];
+//     for n_mut_ref in &mut v_mut {
+//         *n_mut_ref += 50;
+//     }
+//     println!("Vector after mutable iteration: {:?}", v_mut); // Output: [60, 70, 80]
+
+//     // Iterating and taking ownership (consuming the vector):
+//     // Use this when you no longer need the original vector after iteration.
+//     let v_owned = vec![1, 2, 3];
+//     for n_owned in v_owned {
+//         // `n_owned` is `i32` (the actual value)
+//         println!("Owned value: {}", n_owned);
+//     }
+//     // println!("{:?}", v_owned); // ERROR: value borrowed here after move (v_owned was consumed)
+// }
+
+// fn vec_array_numbers() {
+//     // Create a vector of integers
+//     let numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+
+//     // Print the vector
+//     println!("Numbers: {:?}", numbers);
+
+//     // Print number 3 from the vector
+//     let third: &i32 = &numbers[2];
+//     println!("Third number: {}", third);
+
+//     // Safely access the third number using `get`
+//     let third: Option<&i32> = numbers.get(2);
+//     // The `get` method returns an `Option`, which is `Some` if the index exists, or `None` if it does not.
+//     // Using a match statement to handle the Option
+
+//     match third {
+//         Some(array) => println!("Third number is: {:?}", third),
+//         None => println!("No third number found in the vector."),
+//     }
+
+//     // Convert the vector to an array (fixed size)
+//     let array: [i32; 5] = numbers.try_into().expect("Slice with incorrect length");
+//     // Note: The `try_into` method requires the `TryInto` trait, which is available in the standard library.
+//     // This will panic if the vector length does not match the array length.
+//     // If you want to handle the case where the vector length does not match the array length,
+//     // you can use a match statement or an if let statement to handle the error gracefully.
+
+//     // Print the array
+//     println!("Array: {:?}", array);
+// }

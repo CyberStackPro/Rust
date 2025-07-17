@@ -11,6 +11,7 @@
 //     height: f32,
 // }
 // #[derive(Debug)]
+
 struct User {
     active: bool,
     username: String,
