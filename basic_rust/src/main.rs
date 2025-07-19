@@ -42,6 +42,7 @@ mod functions;
 mod hash_maps;
 mod oop;
 mod ownership;
+mod rust_trait;
 mod test_struct;
 mod vectors;
 fn main() {
