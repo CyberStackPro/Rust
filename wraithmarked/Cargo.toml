@@ -1,5 +1,8 @@
 [package]
 name = "wraithmarked"
+authors = ["Yeabsra Gebriel <yeabsragebriel@gmail.com>"]
+description = "Initial claim for the name. Real library coming soon."
+license = "MIT"
 version = "0.1.0"
 edition = "2024"
 
