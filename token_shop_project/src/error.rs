@@ -6,6 +6,24 @@ pub enum ShopErr {
     NotEnoughTokens,
 }
 
+#[derive(Debug)]
+
+pub enum AuthError {
+    UserNotFound,
+    IncorrectPassword,
+    UserExist,
+}
+
+impl fmt::Display for AuthError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            AuthError::UserNotFound => write!(f, "User not found."),
+            AuthError::IncorrectPassword => write!(f, "Incorrect password."),
+            AuthError::UserExist => write!(f, "User exist Login"),
+        }
+    }
+}
+
 impl fmt::Display for ShopErr {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {

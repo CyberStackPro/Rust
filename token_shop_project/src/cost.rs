@@ -1,7 +1,9 @@
 use crate::error::ShopErr;
 
+const ITEM_PRICE: i32 = 5;
+
 pub fn total_cost(qty: i32) -> i32 {
-    qty * 5
+    qty * ITEM_PRICE
 }
 
 pub fn remaining_tokens(qty: i32, tokens: i32) -> Result<i32, ShopErr> {
