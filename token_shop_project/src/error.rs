@@ -14,6 +14,16 @@ pub enum AuthError {
     UserExist,
 }
 
+pub enum InventoryError {
+    InvalidItem,
+    OutOfStock,
+    ItemNotFound,
+    DuplicateItem,
+    InvalidPrice,
+    InvalidStock,
+    InvalidQuantity,
+}
+
 impl fmt::Display for AuthError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -29,6 +39,20 @@ impl fmt::Display for ShopErr {
         match self {
             ShopErr::ParseError => write!(f, "Invalid input. Please enter a number."),
             ShopErr::NotEnoughTokens => write!(f, "You do not have enough tokens."),
+        }
+    }
+}
+
+impl fmt::Display for InventoryError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            InventoryError::InvalidItem => write!(f, "Invalid Item"),
+            InventoryError::OutOfStock => write!(f, "Item is out of stock."),
+            InventoryError::ItemNotFound => write!(f, "Item not found."),
+            InventoryError::DuplicateItem => write!(f, "Item already exists."),
+            InventoryError::InvalidPrice => write!(f, "Invalid price."),
+            InventoryError::InvalidStock => write!(f, "Invalid stock."),
+            InventoryError::InvalidQuantity => write!(f, "Invalid Quantity."),
         }
     }
 }

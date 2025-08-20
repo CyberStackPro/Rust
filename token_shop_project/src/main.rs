@@ -1,13 +1,13 @@
 mod auth;
 mod cost;
 mod error;
+mod inventory;
 
 use crate::auth::{User, login, register};
 use crate::cost::{remaining_tokens, total_cost};
 use std::io::{Write, stdin, stdout};
 
 fn get_input(prompt: &str) -> String {
-    // stdin().read_line(input).expect("Failed to read input");
     let mut input = String::new();
     print!("{}", prompt);
     stdout().flush().unwrap();
@@ -16,8 +16,6 @@ fn get_input(prompt: &str) -> String {
 }
 
 fn main() {
-    // let mut user_db: Vec<String> = Vec::new();
-    // let mut users: Vec<(String, String, String)> = Vec::new();
     let mut users_db: Vec<User> = Vec::new();
 
     loop {
@@ -51,9 +49,7 @@ fn main() {
             _ => println!("❓ Invalid option. Please type login or register."),
         }
 
-        // authenticate_and_create(&username, &email, &password, &mut users_db).unwrap();
-
-        println!("\n🧾 Current Users:");
+        println!("\n ### Current Users:");
         for (i, user) in users_db.iter().enumerate() {
             println!(
                 "{}. Username: {}, Email: {}, Password: {}",
@@ -67,51 +63,52 @@ fn main() {
         println!("\n---\n");
     }
 
-    // println!("Welcome to the Token Shop!");
+    println!("Welcome to the Token Shop!");
 
-    // let mut tokens = 50;
-    // println!("You currently have {tokens} tokens.");
+    let mut tokens = 50;
+    println!("You currently have {tokens} tokens.");
 
-    // loop {
-    //     let mut s = String::new();
-    //     println!("\nEnter the quantity of items you want to buy (or type 'q' to quit): ");
-    //     user_input(&mut s);
+    loop {
+        // let mut s = String::new();
+        // println!("\nEnter the quantity of items you want to buy (or type 'q' to quit): ");
+        // get_input(&mut s);
+        let input =
+            get_input("\nEnter the quantity of items you want to buy (or type 'q' to quit): ");
+        // let input = s.trim();
 
-    //     let input = s.trim();
+        if input.eq_ignore_ascii_case("q") || input.eq_ignore_ascii_case("exit") {
+            println!("Exiting the shop. Thank you for visiting.");
+            break;
+        }
 
-    //     if input.eq_ignore_ascii_case("q") || input.eq_ignore_ascii_case("exit") {
-    //         println!("Exiting the shop. Thank you for visiting.");
-    //         break;
-    //     }
+        let parsed_input = input.parse::<i32>();
+        let qty = match parsed_input {
+            Ok(n) => n,
+            Err(_) => {
+                eprintln!("Invalid input. Please enter a valid number.");
+                continue;
+            }
+        };
 
-    //     let parsed_input = input.parse::<i32>();
-    //     let qty = match parsed_input {
-    //         Ok(n) => n,
-    //         Err(_) => {
-    //             eprintln!("Invalid input. Please enter a valid number.");
-    //             continue;
-    //         }
-    //     };
+        println!("Calculating total cost...");
 
-    //     println!("Calculating total cost...");
+        match remaining_tokens(qty, tokens) {
+            Ok(remaining) => {
+                println!(
+                    "Purchase successful. You bought {qty} items for {} tokens.",
+                    total_cost(qty)
+                );
+                tokens = remaining;
+                println!("Remaining tokens: {remaining}");
 
-    //     match remaining_tokens(qty, tokens) {
-    //         Ok(remaining) => {
-    //             println!(
-    //                 "Purchase successful. You bought {qty} items for {} tokens.",
-    //                 total_cost(qty)
-    //             );
-    //             tokens = remaining;
-    //             println!("Remaining tokens: {remaining}");
-
-    //             if tokens == 0 {
-    //                 println!("You have used all your tokens. Session ended.");
-    //                 break;
-    //             }
-    //         }
-    //         Err(e) => {
-    //             eprintln!("Transaction failed: {}", e);
-    //         }
-    //     }
-    // }
+                if tokens == 0 {
+                    println!("You have used all your tokens. Session ended.");
+                    break;
+                }
+            }
+            Err(e) => {
+                eprintln!("Transaction failed: {}", e);
+            }
+        }
+    }
 }
