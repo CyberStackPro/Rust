@@ -112,3 +112,33 @@ fn main() {
         }
     }
 }
+
+fn read_number_from_str(s: &str) -> Result<i32, std::num::ParseIntError> {
+    s.parse::<i32>()
+}
+fn double_number(n: &str) -> Result<i32, std::num::ParseIntError> {
+    let num = read_number_from_str(n)?;
+    Ok(num * 2)
+}
+
+fn maps() {
+    // let numbers = vec![1, 2, 3, 4, 5];
+
+    // let res: Vec<i32> = numbers
+    //     .iter()
+    //     .filter(|&n| n % 2 == 0)
+    //     .map(|n| n * 2)
+    //     .flat_map(|n| vec![n, n + 2])
+    //     .collect();
+
+    // println!("{:?}", res);
+
+    let names = vec!["alice", "bob", "charlie"];
+
+    names
+        .iter()
+        .filter(|n| n.len() > 3)
+        .map(|n| n.to_uppercase())
+        .flat_map(|n| n.chars())
+        .collect()
+}

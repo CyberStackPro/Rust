@@ -48,13 +48,22 @@ fn buy_item(
         return Err(InventoryError::ItemNotFound);
     }
 
-    if (qty < 0) {
+    if qty < 0 {
         return Err(InventoryError::InvalidQuantity);
     }
 
     if db.iter().find(|i| i.stock < qty).is_none() {
         return Err(InventoryError::OutOfStock);
     };
+
+    let item = db.iter_mut().find(|item| item.id == item_id).unwrap();
+    let total_cost = item.price * qty;
+    if user.tokens < total_cost {
+        return Err(InventoryError::NotEnoughTokens);
+    }
+    item.stock -= qty;
+    user.tokens -= total_cost;
+    Ok(())
 }
 
 fn remove_item() {}

@@ -22,6 +22,7 @@ pub enum InventoryError {
     InvalidPrice,
     InvalidStock,
     InvalidQuantity,
+    NotEnoughTokens,
 }
 
 impl fmt::Display for AuthError {
@@ -53,6 +54,7 @@ impl fmt::Display for InventoryError {
             InventoryError::InvalidPrice => write!(f, "Invalid price."),
             InventoryError::InvalidStock => write!(f, "Invalid stock."),
             InventoryError::InvalidQuantity => write!(f, "Invalid Quantity."),
+            InventoryError::NotEnoughTokens => write!(f, "Not enough tokens."),
         }
     }
 }

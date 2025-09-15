@@ -16,18 +16,6 @@ pub fn remaining_tokens(qty: i32, tokens: i32) -> Result<i32, ShopErr> {
     }
 }
 
-fn return_ref<'a>(input: &'a i32) -> &'a i32 {
-    input
-}
-
-fn main() {
-    let result = {
-        let x = 5;
-        return_ref(&x)
-    };
-    println!("{}", result);
-}
-
 // fn main() {
 //     let s = String::from("Hello");
 //     let s = takes_owner_ship(s);
