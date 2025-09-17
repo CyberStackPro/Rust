@@ -1,0 +1,4 @@
+1|Buy milk|false
+2|Read Rust book|true
+3|Practice coding|false
+4|Learn Rust Error Handling|false
