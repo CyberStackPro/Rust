@@ -80,6 +80,10 @@ fn load_tasks(path: &str) -> Result<Vec<Task>, TaskError> {
             continue; // skip invalid lines
         }
         let id = parts[0].parse::<u32>()?;
+        // let id = match parts[0].parse::<u32>() {
+        //     Ok(val) => val,
+        //     Err(e) => return Err(e.into()), // convert to our custom error if needed
+        // };
         let title = parts[1].to_string();
         let completed = parts[2].parse::<bool>()?;
 
